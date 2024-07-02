@@ -1,12 +1,8 @@
 /* Header.css */
 
 /* Estilos globais do componente Header */
-.AppBar {
-    background-color: black;
-    text-align: center;
-    
+
     /* Adicione estilos conforme necessário para a barra de aplicativos */
-  }
   
   .logo {
     width: 95px;
@@ -18,12 +14,7 @@
     /* Estilos para os links de navegação, customize conforme necessário */
   }
 
-  .scrolled {
-    background-color: #fff; /* Cor de fundo do header quando rolado */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ao rolar */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
-  }
-  
+
   
   
   .userMenu {
@@ -32,9 +23,6 @@
   }
 
   .transparent {
-    background-color: transparent !important;
+    background-color: black;
   }
   
-  .AppBar{
-    font-size:  400px;
-  }
