@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  AppBar, Box, Toolbar, Typography, IconButton,
-  Avatar, Button, Tooltip, Menu, MenuItem, 
-  Container, Link
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'; // Ícone de usuário
-import Logo from './TS.svg';
-import styles from './header.module.css';
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Para navegação
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu'; 
+import Container from '@mui/material/Container';
+import Logo from './TS.svg'; // Importe o logotipo
+import styles from './header.module.css'; // Importar o arquivo de módulo CSS
 
 const pages = ['Home', 'Serviços', 'Sobre'];
 const settings = ['Perfil', 'Conta', 'Sair'];
@@ -17,15 +22,9 @@ function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de login
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticação
 
-  useEffect(() => {
-    // Verificar se o usuário está logado (carregar do localStorage, por exemplo)
-    const storedLoginStatus = localStorage.getItem('isLoggedIn');
-    if (storedLoginStatus === 'true') {
-      setIsLoggedIn(true);
-    }
-  }, []); // Executa apenas uma vez ao montar o componente
+  const navigate = useNavigate(); // Hook de navegação
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,16 +42,28 @@ function Header() {
     setAnchorElUser(null);
   };
 
-  const handleLoginClick = () => {
-    // Lógica para redirecionar para a página de login (ex: history.push('/login'))
+  const handleLogin = () => {
+    // Simulação de login
+    setIsAuthenticated(true);
+    navigate('/'); // Redireciona para a página principal após login
   };
 
-  const handleLogoutClick = () => {
-    // Lógica para deslogar (ex: localStorage.removeItem('isLoggedIn'); history.push('/'))
-    setIsLoggedIn(false);
+  const handleLogout = () => {
+    // Simulação de logout
+    setIsAuthenticated(false);
+    navigate('/'); // Redireciona para a página principal após logout
   };
 
-  useEffect(() => {
+  const handleNavigation = (page) => {
+    if (page === 'Sair') {
+      handleLogout();
+    } else {
+      navigate(`/${page.toLowerCase()}`); // Navega para a página específica
+    }
+    handleCloseUserMenu();
+  };
+
+  React.useEffect(() => {
     const handleScroll = () => {
       const isTop = window.scrollY < 100;
       setIsScrolled(!isTop);
@@ -111,7 +122,7 @@ function Header() {
               onClose={handleCloseNavMenu}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -136,29 +147,32 @@ function Header() {
             ))}
           </Box>
 
-          {/* Botão de Login/Menu do Usuário */}
           <Box sx={{ flexGrow: 0 }}>
-            <Button
-              onClick={isLoggedIn ? handleOpenUserMenu : handleLoginClick}
-              startIcon={isLoggedIn ? <Avatar /> : <AccountCircleIcon />}
-              sx={{ color: isScrolled ? 'black' : 'white', textTransform: 'none' }}
-            >
-              {isLoggedIn ? 'Perfil' : 'Entrar'}
-            </Button>
-
-            {isLoggedIn && ( // Mostrar menu apenas se estiver logado
+            {isAuthenticated ? (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Button onClick={handleLogin} sx={{ color: 'white' }}>Entrar</Button>
+            )}
+            {isAuthenticated && (
               <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
                 anchorEl={anchorElUser}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                keepMounted
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem onClick={handleCloseUserMenu} component={Link} href="/profile">
-                  Perfil
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu} component={Link} href="/account">
-                  Conta
-                </MenuItem>
-                <MenuItem onClick={handleLogoutClick}>Sair</MenuItem>
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={() => handleNavigation(setting)}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
               </Menu>
             )}
           </Box>
