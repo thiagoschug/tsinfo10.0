@@ -2,3 +2,9 @@
     background-color: #00cc66; /* Cor para a Página 2 */
     height: 100vh;
   }
+
+  div#dayara{
+
+    position: fixed;
+    margin-bottom: 500px;
+  }

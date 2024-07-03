@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Para navegação
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -141,6 +141,7 @@ function Header() {
                   color: isScrolled ? 'black' : 'white',
                   textTransform: 'none',
                 }}
+                onClick={() => navigate(`/${page.toLowerCase()}`)}
               >
                 {page}
               </Button>
