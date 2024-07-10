@@ -1,94 +1,223 @@
+/* Importando fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilização do corpo da página */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+}
+
+
+/* Estilização da página principal */
 .pagina1 {
-    background-color: #ffcc00; /* Cor para a Página 1 */
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    min-height: 100vh; /* Garante que a página ocupe a altura total da viewport */
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 65px;
+}
 
-  }
-
-  body{
-   position: relative;
-  }
- /*Container*/
-  .container{
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Estilização do contêiner de conteúdo */
+.container {
+    width: 80%;
+    max-width: 1400px;
     padding: 20px;
-    box-sizing: border-box;
-  }
-  *, ::after, ::before{
-    box-sizing: border-box;
-  }
-  div{
- display: block;
- unicode-bidi: isolate;
-  }
+    background-color: #adc4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 500px; /* Definindo uma altura mínima */
+}
 
-  /*TItulo*/
-  .section-title{
+/* Ajuste para dispositivos móveis */
+@media (max-width: 767px) {
+    .container {
+        width: 95%; /* Ocupa quase toda a largura em telas menores */
+        padding: 10px;
+    }
+}
+
+/* Estilização do título */
+.titulo {
     text-align: center;
     margin-bottom: 3rem;
-  }
+}
 
-  .section-title small{
-    color: aqua;
-  }
-  .small, small{
-font-size: 80%;
-font-weight: 400;
-  }
+.titulo small {
+    color: #007bff;
+    font-weight: bold;
+}
 
-  /*NAVMENU*/
+/* Estilização de elementos pequenos */
+.small, small {
+    font-size: 80%;
+    font-weight: 400;
+}
 
-  .nav-menu {
-    padding: 1rem 0;
-    transition: all 0.3s ease;
+/* Estilização das abas de navegação */
+.nav-tabs {
+    border-bottom: 2px solid #007bff;
+    display: flex; /* Usa Flexbox para distribuir as abas igualmente */
+}
+
+.nav-tabs .nav-item {
+    flex: 1; /* Cada aba ocupa o mesmo espaço */
+    margin-bottom: -1px;
+    text-align: center; /* Centraliza o texto das abas */
+}
+
+.nav-tabs .nav-link {
+    color: #e6e6e6;
+    font-weight: 500;
+    border: 1px solid #007bff;
+    border-radius: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adiciona sombra no hover */
+    transform: scale(1.05); /* Aumenta um pouco o tamanho no hover */
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:focus {
+    background-color: #007bff;
+    color: #e62a2a;
+}
+
+/* Estilização de imagens responsivas */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Adicionando sombras aos elementos de texto */
+h2, p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilização do menu de navegação */
+.nav-menu {
+  padding: 1rem 0;
+  transition: all 0.3s ease;
 }
 
 .nav-menu.is-scrolling,
 .nav-menu.menu-is-open {
-    background-color: rgb(74, 13, 143);
-    background: -moz-linear-gradient(135deg, rgb(74, 13, 143) 0%, rgb(250, 42, 143) 100%);
-    background: -webkit-linear-gradient(135deg, rgb(74, 13, 143) 0%, rgb(250, 42, 143) 100%);
-    background: linear-gradient(135deg, rgb(74, 13, 143) 0%, rgb(250, 42, 143) 100%);
-    -webkit-box-shadow: 0px 5px 23px 0px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 5px 23px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 5px 23px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgb(74, 13, 143);
+  background: -moz-linear-gradient(135deg, rgb(74, 13, 143) 0%, rgb(250, 42, 143) 100%);
+  background: -webkit-linear-gradient(135deg, rgb(74, 13, 143) 0%, rgb(250, 42, 143) 100%);
+  background: linear-gradient(135deg, rgb(74, 13, 143) 0%, rgb(250, 42, 143) 100%);
+  -webkit-box-shadow: 0px 5px 23px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 5px 23px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 23px 0px rgba(0, 0, 0, 0.1);
 }
 
 .nav-menu.is-scrolling {
-    padding: 0;
+  padding: 0;
 }
 
+/* Estilização dos links de navegação no navbar */
 .navbar-nav .nav-link {
-    position: relative;
+  position: relative;
 }
 
 @media (min-width: 992px) {
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 1rem;
-        padding-left: 1rem;
-        font-size: 14px;
-    }
-    .navbar-nav>.nav-item>.nav-link.active:after {
-        content: "";
-        border-bottom: 2px solid #cd99d4;
-        left: 1rem;
-        right: 1rem;
-        bottom: 5px;
-        height: 1px;
-        position: absolute;
-    }
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    font-size: 14px;
+  }
+  .navbar-nav>.nav-item>.nav-link.active:after {
+    content: "";
+    border-bottom: 2px solid #007bff; /* Cor azul para o indicador ativo */
+    left: 1rem;
+    right: 1rem;
+    bottom: 5px;
+    height: 1px;
+    position: absolute;
+  }
 }
 
-@media (max-width:991px) {
-    .navbar-nav.is-scrolling {
-        padding-bottom: 1rem;
-    }
-    .navbar-nav .nav-item {
-        text-align: center;
-    }
+@media (max-width: 991px) {
+  .navbar-nav.is-scrolling {
+    padding-bottom: 1rem;
+  }
+  .navbar-nav .nav-item {
+    text-align: center;
+  }
+}
+
+/* Estilização dos botões */
+button, .btn {
+  background-color: #007bff; /* Fundo azul para os botões */
+  color: #fff; /* Cor do texto branco */
+  border: none; /* Remover borda */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de ponteiro */
+  transition: background-color 0.3s, transform 0.3s; /* Transição suave para hover e active */
+}
+
+button:hover, .btn:hover {
+  background-color: #0056b3; /* Cor de fundo mais escura no hover */
+}
+
+button:active, .btn:active {
+  transform: scale(0.95); /* Reduz o tamanho ligeiramente no active */
+}
+
+/* Estilização do contêiner ao redor dos botões */
+.button-container {
+  background-color: #007bff; /* Fundo azul */
+  padding: 20px; /* Espaçamento ao redor dos botões */
+  border-radius: 10px; /* Bordas arredondadas */
+  display: flex; /* Para facilitar o posicionamento dos botões */
+  justify-content: center; /* Centralizar os botões */
+  align-items: center; /* Centralizar verticalmente os botões */
+}
+
+/* Estilização das abas */
+.tab-content {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px; /* Altura mínima das abas */
+}
+
+/* Transição suave para o conteúdo das abas */
+.tab-pane {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out; /* Transição suave */
+}
+
+.tab-pane.show {
+  opacity: 1;
+}
+
+/* Ajustes específicos para dispositivos móveis */
+@media (max-width: 767px) {
+  .nav-tabs .nav-item {
+    flex: none;
+  }
+  
+  .tab-content {
+    min-height: 200px; /* Ajuste a altura mínima para telas menores */
+  }
+  
+  .d-flex {
+    flex-direction: column; /* Alinhe os itens verticalmente em telas pequenas */
+  }
+  
+  .d-flex img {
+    margin-bottom: 10px; /* Adicione espaçamento entre a imagem e o texto */
+  }
 }

@@ -12,8 +12,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu'; 
 import Container from '@mui/material/Container';
-import Logo from './TS.svg'; // Importe o logotipo
-import styles from './header.module.css'; // Importar o arquivo de módulo CSS
+import Logo from './TS.svg';
+import styles from './header.module.css';
 
 const pages = ['Home', 'Serviços', 'Sobre'];
 const settings = ['Perfil', 'Conta', 'Sair'];
@@ -22,9 +22,9 @@ function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado de autenticação
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const navigate = useNavigate(); // Hook de navegação
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,13 +43,11 @@ function Header() {
   };
 
   const handleLogin = () => {
-    // Simulação de login
     setIsAuthenticated(true);
     navigate('/'); // Redireciona para a página principal após login
   };
 
   const handleLogout = () => {
-    // Simulação de logout
     setIsAuthenticated(false);
     navigate('/'); // Redireciona para a página principal após logout
   };
@@ -58,9 +56,22 @@ function Header() {
     if (page === 'Sair') {
       handleLogout();
     } else {
-      navigate(`/${page.toLowerCase()}`); // Navega para a página específica
+      navigate(`/${page.toLowerCase()}`);
     }
     handleCloseUserMenu();
+  };
+
+  const handleScrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const pageToIdMap = {
+    Home: 'home',
+    Serviços: 'serviços',
+    Sobre: 'sobre',
   };
 
   React.useEffect(() => {
@@ -89,12 +100,10 @@ function Header() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-          {/* Logo */}
-          <Typography variant="h6" noWrap component="a" href="#app-bar-with-responsive-menu">
+          <Typography variant="h6" noWrap component="a" href="/">
             <img src={Logo} alt="Logo" className={styles.logo} />
           </Typography>
 
-          {/* Ícone do Menu para Navegação Responsiva */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -122,26 +131,24 @@ function Header() {
               onClose={handleCloseNavMenu}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                <MenuItem key={page} onClick={() => handleScrollToSection(pageToIdMap[page])}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          {/* Botões de Navegação */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 20 }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                href={`#${page.toLowerCase()}`}
                 className={styles.button}
                 sx={{
                   '&:hover': { backgroundColor: 'rgba(0, 0, 255, 0.1)' },
                   color: isScrolled ? 'black' : 'white',
                   textTransform: 'none',
                 }}
-                onClick={() => navigate(`/${page.toLowerCase()}`)}
+                onClick={() => handleScrollToSection(pageToIdMap[page])}
               >
                 {page}
               </Button>

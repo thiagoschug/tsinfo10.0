@@ -1,10 +1,92 @@
+/* Importar fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif; /* Adiciona a fonte Roboto */
+  background-color: #f0f0f0; /* Cor de fundo */
+}
+
+
 .pagina2 {
-    background-color: #00cc66; /* Cor para a Página 2 */
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Garante que a página ocupe toda a altura da viewport */
+  background-color: #ffffff; /* Cor de fundo da Página 2 */
+  margin-top: 90px;
+  padding: 20px;
+}
+
+.main {
+  flex: 1; /* Faz o main ocupar o espaço disponível */
+  text-align: center;
+}
+
+.main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #007bff; /* Cor do título */
+}
+
+.main p {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 1.125rem; /* Exemplo de estilo adicional */
+  line-height: 1.6; /* Exemplo de estilo adicional */
+  color: #333; /* Cor do texto */
+}
+
+.textosobre {
+  text-align: justify;
+}
+
+.content {
+  margin-top: 2rem;
+}
+
+/* Footer */
+.showFooter {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  padding: 20px 0; /* Espaçamento vertical */
+  text-align: center; /* Alinhar texto ao centro */
+  
+  color: #000000; /* Cor do texto do rodapé */
+}
+
+.hideFooter {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footerContainer {
+  max-width: 960px; /* Largura máxima do container */
+  margin: 0 auto; /* Centralizar o container */
+}
+
+.copyright {
+  display: flex; /* Usar flexbox para os itens de copyright */
+  justify-content: center; /* Centralizar os itens horizontalmente */
+  gap: 20px; /* Espaçamento entre os itens */
+}
+
+.copyright p {
+  margin: 0; /* Remover margens padrão dos parágrafos */
+  font-size: 0.875rem; /* Tamanho da fonte */
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 767px) {
+  .main p {
+    width: 95%; /* Ocupa quase toda a largura em telas menores */
   }
 
-  div#dayara{
-
-    position: fixed;
-    margin-bottom: 500px;
+  .main h1 {
+    font-size: 2rem;
   }
+
+  .footerContainer {
+    padding: 10px;
+  }
+}
