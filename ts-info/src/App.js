@@ -6,7 +6,7 @@ import PaginaInicio from './components/PaginaInicio';
 import Pagina1 from './components/Pagina1';
 import Pagina2 from './components/Pagina2';
 import Barraderolagem from './components/Barraderolagem';
-import Botaocontato from './components/Botaocontato'; // Corrigido o caminho
+import Botaocontato from './components/Botaocontato'; 
 
 function App() {
   return (
